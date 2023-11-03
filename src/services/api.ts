@@ -1,24 +1,24 @@
 import axios from "axios";
 
-export type Personagem = {
-    id: number;
-    name: string;
-    status: string;
-    species: string;
-    type: string;
-    gender: string;
+export const PersonagensData = {
+    id: Number,
+    name: String,
+    status: String,
+    species: String,
+    type: String,
+    gender: String,
     origin: {
-        name: string;
-        url: string;
-    }
+        name: String,
+        url: String
+    },
     location: {
-        name: string;
-        url: string;
-    }
-    image: string;
-    episode: string[];
-    url: string;
-    created: string;
+        name: String,
+        url: String
+    },
+    image: String,
+    episode: Array,
+    url: String,
+    created: String
 }
 
 export const fetchPersonagem = axios.create({

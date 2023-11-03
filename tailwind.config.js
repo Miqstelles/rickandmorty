@@ -1,19 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './pages/**/*.{html,js}',
-    './components/**/*.{html,js}',
+    './src/**/*.jsx',
+    './index.html',
   ],
   theme: {
-    colors: {
-      'green': '#97CE4C',
-      'blue': {
-        '100': '#BEE5FD',
-        '200': '#01B4C6'
-      },
-      'pink': '#F675DA'
+    fontFamily: {
+      'ALFASLAB': ["'Alfa Slab One'", 'serif'],
+      'JOCKEYONE': ["'Jockey One'", 'sans-serif']
     },
-    extend: {},
+    extend: {
+      colors: {
+        'green': '#97CE4C',
+        'blue': {
+          '100': '#BEE5FD',
+          '200': '#01B4C6'
+        },
+        'pink': '#F675DA'
+      },
+    },
   },
   plugins: [],
 }
