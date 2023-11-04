@@ -8,27 +8,14 @@ import PropTypes from "prop-types";
 export function Personagem(props) {
     const [personagens, setPersonagens] = useState([PersonagensData])
 
-    const currentPage = props.pagina
-    const itemsPerPage = props.limite
-
-    const firstIndex = (currentPage - 1) * itemsPerPage + 1
-    const lastIndex = currentPage * itemsPerPage
-    const ids = []
-
-    for (let i = firstIndex; i <= lastIndex; i++) {
-        ids.push(i)
-    }
-
-    const idsString = ids.join(',')
-
     useEffect(() => {
-        fetchPersonagem(`${idsString}`)
+        fetchPersonagem(`?page=${props.pagina}&name=&status=&gender=&species=`)
             .then(response => {
-                const dadosPersonagens = response.data
+                const dadosPersonagens = response.data.results
                 setPersonagens(dadosPersonagens)
             })
             .catch(error => console.error(error))
-    }, [idsString])
+    }, [props.pagina])
 
     return (
         <div className="grid md2:grid-cols-2 lg1:grid-cols-3 gap-[20px] mt-[24px]">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Navbar } from "../components/navbar";
 import { Personagem } from "../components/personagem";
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
+import { Filtro } from "../components/filtro";
 
 
 export function Home() {
@@ -10,6 +11,7 @@ export function Home() {
     return (
         <div className="w-full h-full pb-[30px]">
             <Navbar />
+            <Filtro />
             <div className="flex flex-col justify-center items-center">
                 <Personagem
                     pagina={pagina}
