@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react"
 import { fetchPersonagem } from "../services/api"
+import { useSelector } from 'react-redux'
 import { PersonagensData } from "../services/api";
 import { Person, Alien, Heartbeat, Skull, Ghost } from "@phosphor-icons/react";
 import PropTypes from "prop-types";
 
 export function Personagem(props) {
     const [personagens, setPersonagens] = useState([PersonagensData])
+    const filtro = useSelector((state) => state.filters.filteredItems)
 
     useEffect(() => {
-        fetchPersonagem(`?page=${props.pagina}&name=&status=&gender=&species=`)
+        fetchPersonagem(`?page=${props.pagina}&name=&species=${filtro[0]}&gender=${filtro[1]}&status=${filtro[2]}`)
             .then(response => {
                 const dadosPersonagens = response.data.results
                 setPersonagens(dadosPersonagens)
             })
             .catch(error => console.error(error))
-    }, [props.pagina])
+    }, [props.pagina, filtro])
 
     return (
-        <div className="grid md2:grid-cols-2 lg1:grid-cols-3 gap-[20px] mt-[24px]">
+        <div className="flex flex-wrap justify-center gap-[20px] mt-[24px]">
             {personagens.map(personagem => (
                 <div className="md2:w-[580px] w-[600px] h-[220px] drop-shadow-2xl duration-[100ms] hover:bg-blue-200 border-[2px] border-blue-200" key={personagem.id}>
                     <div className="flex gap-[20px]">
