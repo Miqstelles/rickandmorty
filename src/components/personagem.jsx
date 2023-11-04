@@ -4,7 +4,6 @@ import { PersonagensData } from "../services/api";
 import { Person, Alien, Heartbeat, Skull, Ghost } from "@phosphor-icons/react";
 import PropTypes from "prop-types";
 
-
 export function Personagem(props) {
     const [personagens, setPersonagens] = useState([PersonagensData])
 

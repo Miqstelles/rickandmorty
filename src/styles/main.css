@@ -5,3 +5,18 @@
 html, body {
     height: 100%;
 }
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+}
+
+/* Estilos para checkboxes selecionados */
+.checkbox:checked {
+  background-color: #007BFF;
+  border-color: #007BFF;
+}
