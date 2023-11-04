@@ -13,6 +13,9 @@ export default {
 
 
     extend: {
+      backgroundImage: {
+        'black-hole': "url('src/assets/rickandmorty_santaclaus.gif')"
+      },
       screens: {
         sm1: '320px',
         sm2: '375px',

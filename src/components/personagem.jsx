@@ -2,19 +2,33 @@ import { useEffect, useState } from "react"
 import { fetchPersonagem } from "../services/api"
 import { PersonagensData } from "../services/api";
 import { Person, Alien, Heartbeat, Skull, Ghost } from "@phosphor-icons/react";
+import PropTypes from "prop-types";
 
-export function Personagem() {
+
+export function Personagem(props) {
     const [personagens, setPersonagens] = useState([PersonagensData])
-    const filteredItems = '1'
+
+    const currentPage = props.pagina
+    const itemsPerPage = props.limite
+
+    const firstIndex = (currentPage - 1) * itemsPerPage + 1
+    const lastIndex = currentPage * itemsPerPage
+    const ids = []
+
+    for (let i = firstIndex; i <= lastIndex; i++) {
+        ids.push(i)
+    }
+
+    const idsString = ids.join(',')
 
     useEffect(() => {
-        fetchPersonagem('')
+        fetchPersonagem(`${idsString}`)
             .then(response => {
-                const dadosPersonagens = response.data.results;
+                const dadosPersonagens = response.data
                 setPersonagens(dadosPersonagens)
             })
             .catch(error => console.error(error))
-    }, [filteredItems])
+    }, [idsString])
 
     return (
         <div className="grid md2:grid-cols-2 lg1:grid-cols-3 gap-[20px] mt-[24px]">
@@ -24,9 +38,7 @@ export function Personagem() {
                         <img src={personagem.image} className="w-[229px] h-[216px]" alt={personagem.name} title={personagem.name} />
 
                         <div className="mt-[30px] font-JOCKEYONE text-black text-[24px]">
-                            <p title={personagem.name} className="hover:text-pink">
-                                {personagem.name}
-                            </p>
+                            <p title={personagem.name} className="hover:text-pink">{personagem.name}</p>
 
                             <div className="flex gap-x-[12px] mb-[30px]">
                                 <div className="flex items-center gap-[4px] text-[18px] hover:text-pink">
@@ -51,4 +63,9 @@ export function Personagem() {
         </div>
     )
 
+}
+
+Personagem.propTypes = {
+    pagina: PropTypes.number,
+    limite: PropTypes.number.isRequired
 }
