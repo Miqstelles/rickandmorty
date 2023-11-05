@@ -10,6 +10,11 @@ function filtersReducer(state = initialState, action) {
                 ...state,
                 filteredItems: action.payload
             };
+        case 'SET_PAGE_NUMBERS':
+            return {
+                ...state,
+                pageNumber: action.payload
+            };
         default:
             return state;
     }

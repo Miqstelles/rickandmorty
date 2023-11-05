@@ -1,22 +1,26 @@
 import { useEffect, useState } from "react"
 import { fetchPersonagem } from "../services/api"
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setPageNumber } from "../redux/action";
 import { PersonagensData } from "../services/api";
-import { Person, Alien, Heartbeat, Skull, Ghost } from "@phosphor-icons/react";
+import { Person, Alien, Heartbeat, Skull, Ghost, Horse, Virus, Robot } from "@phosphor-icons/react";
 import PropTypes from "prop-types";
 
 export function Personagem(props) {
     const [personagens, setPersonagens] = useState([PersonagensData])
     const filtro = useSelector((state) => state.filters.filteredItems)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         fetchPersonagem(`?page=${props.pagina}&name=&species=${filtro[0]}&gender=${filtro[1]}&status=${filtro[2]}`)
             .then(response => {
                 const dadosPersonagens = response.data.results
+                dispatch(setPageNumber(response.data.info.pages))
                 setPersonagens(dadosPersonagens)
             })
+
             .catch(error => console.error(error))
-    }, [props.pagina, filtro])
+    }, [props.pagina, filtro, dispatch])
 
     return (
         <div className="flex flex-wrap justify-center gap-[20px] mt-[24px]">
@@ -37,7 +41,13 @@ export function Personagem(props) {
                                 </div>
 
                                 <div className="flex items-center gap-[4px] text-[18px] hover:text-pink">
-                                    {personagem.species === "Human" ? <Person size={32} fill="#000" /> : <Alien size={32} fill="#000" />}
+                                    {personagem.species === "Human" && <Person size={32} fill="#000" />}
+                                    {personagem.species === "Alien" && <Alien size={32} fill="#000" />}
+                                    {personagem.species === "Mythological Creature" && <Alien size={32} fill="#000" />}
+                                    {personagem.species === "Animal" && <Horse size={32} fill="#000" />}
+                                    {personagem.species === "Disease" && <Virus size={32} fill="#000" />}
+                                    {personagem.species === "Robot" && <Robot size={32} fill="#000" />}
+
                                     <p>{personagem.species}</p>
                                 </div>
                             </div>

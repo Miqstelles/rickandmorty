@@ -18,8 +18,7 @@ export function Filtro() {
     useEffect(() => {
         const combinedtItems = [especie, genero, status]
         dispatch(setFilteredItem(combinedtItems));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [especie, genero, status]);
+    }, [dispatch, especie, genero, status]);
 
 
     const [isOpen, setIsOpen] = useState(0)
@@ -38,7 +37,7 @@ export function Filtro() {
 
                 <div
                     className={
-                        `absolute z-10 w-full bg-green  gap-[18px] transition-all ${isOpen === 1 ? 'h-[164px] rounded-b-[10px]' : 'h-0 rounded-b-[10px] overflow-hidden'}`
+                        `absolute z-10 w-full bg-green  gap-[18px] transition-all ${isOpen === 1 ? 'h-[264px] rounded-b-[10px]' : 'h-0 rounded-b-[10px] overflow-hidden'}`
                     }
                 >
                     <div className="space-x-[18px] ml-[18px]">
@@ -75,6 +74,30 @@ export function Filtro() {
                         />
 
                         <label className="text-[24px]">Alien</label>
+                    </div>
+
+                    <div className="space-x-[18px] ml-[18px]">
+                        <input
+                            className="checkbox"
+                            type="checkbox"
+                            value="Animal"
+                            checked={especie === 'animal'}
+                            onChange={() => handleEspecieChange('animal')}
+                        />
+
+                        <label className="text-[24px]">Animal</label>
+                    </div>
+
+                    <div className="space-x-[18px] ml-[18px]">
+                        <input
+                            className="checkbox"
+                            type="checkbox"
+                            value="Robô"
+                            checked={especie === 'robot'}
+                            onChange={() => handleEspecieChange('robot')}
+                        />
+
+                        <label className="text-[24px]">Robô</label>
                     </div>
                 </div>
             </div>
