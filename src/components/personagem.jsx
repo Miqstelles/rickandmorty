@@ -25,11 +25,11 @@ export function Personagem(props) {
     return (
         <div className="flex flex-wrap justify-center gap-[20px] mt-[24px]">
             {personagens.map(personagem => (
-                <div className="md2:w-[580px] w-[600px] h-[220px] drop-shadow-2xl duration-[100ms] hover:bg-blue-200 border-[2px] border-blue-200" key={personagem.id}>
-                    <div className="flex gap-[20px]">
+                <div className="w-[229px] h-[460px] md1:w-[580px] md3:w-[600px] md1:h-[220px] drop-shadow-2xl duration-[100ms] hover:bg-blue-200 border-[2px] border-blue-200" key={personagem.id}>
+                    <div className="md1:flex gap-[20px]">
                         <img src={personagem.image} className="w-[229px] h-[216px]" alt={personagem.name} title={personagem.name} />
 
-                        <div className="mt-[30px] font-JOCKEYONE text-black text-[24px]">
+                        <div className="ml-[20px] md1:ml-0 mt-[30px] font-JOCKEYONE text-black text-[24px]">
                             <p title={personagem.name} className="hover:text-pink">{personagem.name}</p>
 
                             <div className="flex gap-x-[12px] mb-[30px]">
