@@ -1,4 +1,4 @@
-import { CaretDown } from "@phosphor-icons/react";
+import { CaretDown, Trash } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { setFilteredItem } from "../redux/action";
@@ -12,8 +12,13 @@ export function Filtro() {
     const handleGeneroChange = (generoSelecionado) => setGenero(genero === generoSelecionado ? '' : generoSelecionado)
     const handleStatusChange = (statusSelecionado) => setStatus(status === statusSelecionado ? '' : statusSelecionado)
 
-    const dispatch = useDispatch()
+    const limparFiltros = () => {
+        setEspecie('')
+        setGenero('')
+        setStatus('')
+    }
 
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const combinedtItems = [especie, genero, status]
@@ -26,7 +31,6 @@ export function Filtro() {
     return (
         <div className="w-full h-full flex flex-wrap justify-center items-center font-JOCKEYONE mt-[20px] gap-[40px] text-[34px]">
             <p className="text-[48px]">Filtrar por: </p>
-
             <div className="relative">
                 <button
                     className={`w-[200px] h-[80px] bg-green rounded-t-[10px] flex items-center justify-around`}
@@ -208,6 +212,10 @@ export function Filtro() {
                     </div>
                 </div>
             </div>
+
+            <button onClick={() => limparFiltros()} className="w-[50px] h-[50px] flex justify-center items-center rounded-[5px] bg-red-400">
+                <Trash />
+            </button>
         </div>
     )
 }

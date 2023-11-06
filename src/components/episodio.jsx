@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { EpisodioData, PersonagensData, fetchEpisodio, fetchPersonagem } from "../services/api";
 import { EpisodioSkeleton } from "./Skeletons/EpisodioSkeleton";
+import { House } from "@phosphor-icons/react";
 
 export function Episodio() {
     const { id } = useParams()
@@ -45,13 +46,19 @@ export function Episodio() {
     }, [personagensUrl])
 
     return (
-        <div className="w-full grid justify-center font-JOCKEYONE pb-[80px]">,
-            <div className="flex justify-center text-[38px] gap-[18px] mt-[28px]">
+        <div className="w-full grid justify-center font-JOCKEYONE pb-[80px]">
+            <div className="flex justify-center items-center text-[38px] gap-[18px] mt-[28px]">
                 <p>{episodio.episode}</p>
                 <p>{episodio.name}</p>
+                <Link to={'/'} className="w-[50px] h-[50px] duration-100 bg-red-400 hover:bg-red-500  text-white rounded-[5px] flex items-center justify-center gap-[8px]" title="Pagina Inicial">
+                    <House />
+                </Link>
             </div>
 
+
+
             <div className="mt-[44px]">
+
                 <p className="text-[32px] text-center mb-[24px]">Personagens:</p>
                 <div className="flex flex-wrap gap-[24px] justify-center">
                     {loading &&

@@ -15,6 +15,11 @@ function filtersReducer(state = initialState, action) {
                 ...state,
                 pageNumber: action.payload
             };
+        case 'SET_NOME_PERSONAGEM':
+            return {
+                ...state,
+                nomePersonagem: action.payload
+            };
         default:
             return state;
     }

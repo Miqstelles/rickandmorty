@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { fetchPersonagem } from "../services/api"
 import { useSelector, useDispatch } from 'react-redux'
-import { setPageNumber } from "../redux/action";
+import { setNomePersonagem, setPageNumber } from "../redux/action";
 import { Link } from "react-router-dom";
 import { PersonagensSkeleton } from "./Skeletons/PersonagensSkeleton";
 import { PersonagensData } from "../services/api";
@@ -13,10 +13,12 @@ export function Personagens(props) {
     const [loading, setLoading] = useState(true)
 
     const filtro = useSelector((state) => state.filters.filteredItems)
+    const nomePersonagem = useSelector((state) => state.filters.nomePersonagem)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
-        fetchPersonagem(`?page=${props.pagina}&name=&species=${filtro[0]}&gender=${filtro[1]}&status=${filtro[2]}`)
+        fetchPersonagem(`?page=${props.pagina}&name=${nomePersonagem ? nomePersonagem : ''}&species=${filtro[0]}&gender=${filtro[1]}&status=${filtro[2]}`)
             .then(response => {
                 const dadosPersonagens = response.data.results
                 dispatch(setPageNumber(response.data.info.pages))
@@ -25,7 +27,7 @@ export function Personagens(props) {
             })
 
             .catch(error => console.error(error))
-    }, [props.pagina, filtro, dispatch])
+    }, [props.pagina, filtro, nomePersonagem, dispatch])
 
     return (
         <div className="flex flex-wrap justify-center gap-[20px] mt-[24px]">
@@ -37,7 +39,7 @@ export function Personagens(props) {
             }
 
             {!loading && personagens.map(personagem => (
-                <Link to={`/Personagem/${personagem.id}`} key={personagem.id}>
+                <Link to={`/Personagem/${personagem.id}`} key={personagem.id} onClick={() => dispatch(setNomePersonagem(''))}>
                     <div className="w-[229px] h-[460px] md1:w-[580px] md3:w-[600px] md1:h-[220px] drop-shadow-2xl duration-[100ms] hover:bg-blue-200 border-[2px] border-blue-200">
                         <div className="md1:flex gap-[20px]">
                             <img src={personagem.image} className="w-[229px] h-[216px]" alt={personagem.name} title={personagem.name} />

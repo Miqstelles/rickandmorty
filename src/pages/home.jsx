@@ -4,6 +4,8 @@ import { Personagens } from "../components/personagens";
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 import { Filtro } from "../components/filtro";
 import { useSelector } from "react-redux";
+import { Input } from "../components/input"
+
 
 
 export function Home() {
@@ -20,6 +22,8 @@ export function Home() {
         <div className="w-full h-full pb-[30px]">
             <Navbar />
             <Filtro />
+            <Input />
+
             <div className="flex flex-col justify-center items-center">
                 <Personagens
                     pagina={pagina}

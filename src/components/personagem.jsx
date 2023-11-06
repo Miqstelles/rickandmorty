@@ -45,7 +45,7 @@ export function Personagem() {
 
     return (
         <div className="grid w-full h-[100vh] md1:w-full md1:flex justify-center items-center md1:gap-[44px] p-[18px]">
-            <div className="p-[20px] w-fit flex flex-col justify-center h-[700px] border-[2px] border-black mt-[28px]">
+            <div className="p-[20px] w-fit flex flex-col justify-center items-center h-[700px] border-[2px] border-black mt-[28px]">
                 <img src={personagem.image} alt={personagem.name} title={personagem.name} className="rounded-full w-[300px] duration-100 hover:brightness-75" />
                 <div className="ml-[8px] md1:ml-0 mt-[30px] font-JOCKEYONE text-black text-[24px]">
                     <p title={personagem.name} className="hover:text-pink">{personagem.name}</p>
