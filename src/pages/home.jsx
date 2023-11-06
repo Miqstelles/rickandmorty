@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "../components/navbar";
-import { Personagem } from "../components/personagem";
+import { Personagens } from "../components/personagens";
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 import { Filtro } from "../components/filtro";
 import { useSelector } from "react-redux";
@@ -21,7 +21,7 @@ export function Home() {
             <Navbar />
             <Filtro />
             <div className="flex flex-col justify-center items-center">
-                <Personagem
+                <Personagens
                     pagina={pagina}
                     limite={9}
                 />
