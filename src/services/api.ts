@@ -21,6 +21,20 @@ export const PersonagensData = {
     created: String
 }
 
+export const EpisodioData = {
+    id: Number,
+    name: String,
+    air_date: String,
+    episode: String,
+    characters: Array,
+    url: String,
+    created: String
+}
+
 export const fetchPersonagem = axios.create({
     baseURL: "https://rickandmortyapi.com/api/character/"
+})
+
+export const fetchEpisodio = axios.create({
+    baseURL: "https://rickandmortyapi.com/api/episode/"
 })
