@@ -24,7 +24,7 @@ export function Filtro() {
     const [isOpen, setIsOpen] = useState(0)
 
     return (
-        <div className="w-full h-full flex justify-center items-center font-JOCKEYONE mt-[20px] gap-[40px] text-[34px]">
+        <div className="w-full h-full flex flex-wrap justify-center items-center font-JOCKEYONE mt-[20px] gap-[40px] text-[34px]">
             <p className="text-[48px]">Filtrar por: </p>
 
             <div className="relative">

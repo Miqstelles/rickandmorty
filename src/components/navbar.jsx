@@ -1,13 +1,11 @@
 import rickandmortylogo from '../assets/rickandmorty_logo.png'
-import rickandmortyhamburguermenu from '../assets/rickandmorty_hamburguer_menu.png'
 import { MagnifyingGlass } from '@phosphor-icons/react'
 
 export function Navbar() {
     return (
         <nav>
-            <div className="flex justify-around items-center w-full h-[124px] bg-green">
-                <img src={rickandmortyhamburguermenu} className="w-[78px]" />
-                <img src={rickandmortylogo} className="w-[395px] h-[174px]" />
+            <div className="flex justify-center gap-[128px] items-center w-full h-[144px] bg-green">
+                <img src={rickandmortylogo} className="w-[395px] h-[144px] hidden md1:flex" />
                 <MagnifyingGlass size={68} fill='#FFF' />
             </div>
         </nav>
