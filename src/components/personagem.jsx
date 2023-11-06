@@ -5,6 +5,7 @@ import { House, Alien, Ghost, Heartbeat, Horse, Person, Robot, Skull, Virus } fr
 
 export function Personagem() {
     const { id } = useParams()
+
     const [personagem, setPersonagem] = useState(PersonagensData)
     const [episodiosUrl, setEpisodiosUrl] = useState([''])
     const [episodios, setEpisodios] = useState([EpisodioData])

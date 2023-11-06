@@ -3,12 +3,15 @@ import { fetchPersonagem } from "../services/api"
 import { useSelector, useDispatch } from 'react-redux'
 import { setPageNumber } from "../redux/action";
 import { Link } from "react-router-dom";
+import { PersonagensSkeleton } from "./Skeletons/PersonagensSkeleton";
 import { PersonagensData } from "../services/api";
 import { Person, Alien, Heartbeat, Skull, Ghost, Horse, Virus, Robot } from "@phosphor-icons/react";
 import PropTypes from "prop-types";
 
 export function Personagens(props) {
     const [personagens, setPersonagens] = useState([PersonagensData])
+    const [loading, setLoading] = useState(true)
+
     const filtro = useSelector((state) => state.filters.filteredItems)
     const dispatch = useDispatch()
 
@@ -18,6 +21,7 @@ export function Personagens(props) {
                 const dadosPersonagens = response.data.results
                 dispatch(setPageNumber(response.data.info.pages))
                 setPersonagens(dadosPersonagens)
+                setLoading(false)
             })
 
             .catch(error => console.error(error))
@@ -25,7 +29,14 @@ export function Personagens(props) {
 
     return (
         <div className="flex flex-wrap justify-center gap-[20px] mt-[24px]">
-            {personagens.map(personagem => (
+
+            {loading &&
+                Array.from(Array(20), (_, i) =>
+                    <PersonagensSkeleton key={i} />
+                )
+            }
+
+            {!loading && personagens.map(personagem => (
                 <Link to={`/Personagem/${personagem.id}`} key={personagem.id}>
                     <div className="w-[229px] h-[460px] md1:w-[580px] md3:w-[600px] md1:h-[220px] drop-shadow-2xl duration-[100ms] hover:bg-blue-200 border-[2px] border-blue-200">
                         <div className="md1:flex gap-[20px]">
