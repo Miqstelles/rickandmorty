@@ -9,6 +9,10 @@ git clone https://github.com/Miqstelles/rickandmorty.git
 ```
 
 ```
+cd rickandmorty
+```
+
+```
 npm install
 ```
 
